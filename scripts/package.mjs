@@ -7,7 +7,7 @@ output=root/'DBR-Website.zip'
 standalone=root/'DBR-Standalone.html'
 if not standalone.is_file(): raise SystemExit('Run npm run build first')
 skip={'.git','node_modules','test-results','playwright-report'}
-guide='''راهنمای اجرای پیاده سازی DBR
+guide='''راهنمای اجرای DBR
 
 ۱. فایل ZIP را کاملاً استخراج کنید (Extract All).
 ۲. فایل index.html کنار همین راهنما را با Edge یا Chrome باز کنید.
