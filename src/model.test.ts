@@ -1,0 +1,3 @@
+import {describe,it,expect} from 'vitest';
+import {gap,riskScore,average,demoStore,storeSchema} from './model';
+describe('Business calculations and backup validation',()=>{it('preserves sign of recovery gap',()=>{expect(gap(4,6)).toBe(2);expect(gap(4,2)).toBe(-2)});it('scores risk at matrix boundaries',()=>{expect(riskScore(5,5)).toBe(25);expect(riskScore(1,1)).toBe(1)});it('does not fabricate empty progress',()=>expect(average([])).toBe(0));it('validates roundtrip and rejects malformed backups',()=>{const d=demoStore();expect(storeSchema.parse(JSON.parse(JSON.stringify(d)))).toEqual(d);expect(storeSchema.safeParse({...d,rows:[{...d.rows[0],progress:110}]}).success).toBe(false);expect(storeSchema.safeParse({...d,schemaVersion:'2'}).success).toBe(false)})});
